@@ -5,29 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <meta name="author" content="Smart">
+    <meta name="description" content="Weather App">
+    <meta name="keyword" content="Keywords, here">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-
-<form method="post">
-  {% csrf_token %}
-  <input type="text" name="city1" placeholder="Enter city 1">
-  <input type="text" name="city2" placeholder="Enter city 2">
-  <button type="submit">Compare Weather</button>
-</form>
-
-<div class="comparison-container">
-  {% if weather_data1 %}
-    <div class="city-container">
-      {% include 'weather_app/city_weather.html' with weather_data=weather_data1 daily_forecasts=daily_forecasts1 %}
+  <div class="container">
+    <form action="POST">
+      {% csrf_token %}
+      <input type="text" name="city" placeholder="Enter City">
+      <button type="submit" class="btn">Enter</button>
+    </form>
+    <div class="weather">
+      <div class="left">
+        <h2>{{temp}} &deg;</h2>
+        <h3>{{city}}</h3>
+      </div>
+      <div class="right">
+        <div class="icon">
+          <p><img src="https:openweathermap.org/img/wn/{{icon}}.png" width="100px"/></p>
+        </div>
+        <div class="condition">
+          <p>{{description}}</p>
+          <p>{{day}}</p>
+        </div>
+      </div>
     </div>
-  {% endif %}
-  {% if weather_data2 %}
-    <div class="city-container">
-      {% include 'weather_app/city_weather.html' with weather_data=weather_data2 daily_forecasts=daily_forecasts2 %}
-    </div>
-  {% endif %}
-</div>
-
+  </div>
 </body>
 </html>
