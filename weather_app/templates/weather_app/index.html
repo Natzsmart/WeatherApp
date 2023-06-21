@@ -12,11 +12,11 @@
 </head>
 <body>
   <div class="container">
-    <form action="POST">
+<form action="/" method="POST">
       {% csrf_token %}
       <input type="text" name="city" placeholder="Enter City">
       <button type="submit" class="btn">Enter</button>
-    </form>
+</form>
     <div class="weather">
       <div class="left">
         <h2>{{temp}} &deg;</h2>

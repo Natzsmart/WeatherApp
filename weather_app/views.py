@@ -1,6 +1,8 @@
 from django.shortcuts import render
 import requests
 import datetime
+from .config import API_KEY
+
 
 def index(request):
     if "city" in request.POST:
@@ -9,7 +11,7 @@ def index(request):
         city = "London"
 
 
-    api_key = '67e37a06c8ef80d39d845d393dc709fa' 
+    api_key =  API_KEY
     URL = 'https://api.openweathermap.org/data/2.5/weather'
     PARAMS = {'q':city, 'appid': api_key, 'units': 'metric'}
     r = requests.get(URL, params=PARAMS)
